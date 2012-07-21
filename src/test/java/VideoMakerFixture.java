@@ -11,21 +11,21 @@ public class VideoMakerFixture
 	@Test
 	public void should_create_video() throws Exception
 	{
-		VideoMaker videoMaker = new VideoMaker();
+		VideoMaker maker = new VideoMaker("demo.mov");
 		List<BufferedImage> frames = new ArrayList<BufferedImage>();
 		String path = "images";
 		File folder = new File(path);
 		File[] files = folder.listFiles();
 		
-		for(int i=0;i<5;i++)
+		for(int i=0;i<10;i++)
 		{
-			addFrames(frames,files);
+			addFrames(maker,files);
 		}
 		
-		videoMaker.createVideo("demo.mov", frames);
+		maker.finish();
 	}
 
-	private void addFrames(List<BufferedImage> frames, File[] files) throws IOException
+	private void addFrames(VideoMaker maker, File[] files) throws IOException
 	{
 		for(File file:files)
 		{
@@ -33,7 +33,7 @@ public class VideoMakerFixture
 			{
 				BufferedImage frame = ImageIO.read(file);
 				assert(frame!=null);				
-				frames.add(frame);
+				maker.addFrame(frame);
 			}
 		}
 	}

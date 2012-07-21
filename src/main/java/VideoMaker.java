@@ -16,24 +16,27 @@ public class VideoMaker
 	final int width = 800;
 	final int height = 600;
 	final long frameRate = 66;
-	public void createVideo(String output, List<BufferedImage> frames)
+	private int nextFrame = 0;
+	private final IMediaWriter writer;
+	public VideoMaker(String fileName)
 	{
-		final IMediaWriter writer = ToolFactory.makeWriter(output);
+		writer = ToolFactory.makeWriter(fileName);
 		//add a video stream
 		writer.addVideoStream(videoStreamIndex,videoStreamId,width,height);
-	
-		int nextFrame = 0;
-		for(BufferedImage frame: frames)
-		{
-			//add each frame
-			writer.encodeVideo(videoStreamIndex,frame, nextFrame, MILLISECONDS);
-			//increment the next frame
-			nextFrame+=frameRate;
-			
-		}
+	}
+	public void addFrame(BufferedImage frame)
+	{
+
+		writer.encodeVideo(videoStreamIndex,frame, nextFrame, MILLISECONDS);
+		//increment the next frame
+		nextFrame+=frameRate;
+
+	}
+
+	public void finish()
+	{
 		//close the writer
 		writer.close();
 	}
-
 
 }
