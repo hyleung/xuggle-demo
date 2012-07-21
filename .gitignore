@@ -1,0 +1,9 @@
+*.class
+.DS_STORE
+# Package Files #
+*.jar
+*.war
+*.ear
+*.mov
+build
+.gradle
