@@ -8,6 +8,6 @@ repositories {
 }
 
 dependencies {
-	compile 'xuggle:xuggle-xuggler:5.2'
+	compile 'xuggle:xuggle-xuggler:5.4'
 	testCompile 'junit:junit:4.10'
 }

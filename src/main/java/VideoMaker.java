@@ -20,7 +20,7 @@ public class VideoMaker
     private final IMediaWriter writer;
     public VideoMaker(String fileName)
     {
-        writer = ToolFactory.makeWriter(fileName);s
+        writer = ToolFactory.makeWriter(fileName);
         //add a video stream
         writer.addVideoStream(videoStreamIndex, videoStreamId, width, height);
     }
