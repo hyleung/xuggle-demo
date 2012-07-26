@@ -13,14 +13,13 @@ public class VideoMakerFixture
     {
         VideoMaker maker = new VideoMaker("demo.mov");
         List<BufferedImage> frames = new ArrayList<BufferedImage>();
-        String path = "images";
+        String path = "screencaps";
         File folder = new File(path);
         File[] files = folder.listFiles();
 
-        for (int i = 0; i < 10; i++)
-        {
-            addFrames(maker, files);
-        }
+
+        addFrames(maker, files);
+
 
         maker.finish();
     }
@@ -29,10 +28,12 @@ public class VideoMakerFixture
     {
         for (File file: files)
         {
-            if (file.getName().endsWith(".jpg"))
+            String fileName = file.getName();
+            if (fileName.endsWith(".jpg") && file.length()>0)
             {
-                BufferedImage frame = ImageIO.read(file);
-                assert(frame != null);
+                BufferedImage image = ImageIO.read(file);
+                assert(image != null);
+                VideoFrame frame = new VideoFrame(image,Long.parseLong(fileName.substring(0,fileName.indexOf("."))));
                 maker.addFrame(frame);
             }
         }

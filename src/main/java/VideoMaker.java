@@ -13,10 +13,10 @@ public class VideoMaker
 
     final int videoStreamIndex = 0;
     final int videoStreamId = 0;
-    final int width = 800;
-    final int height = 600;
-    final long frameRate = 66;
-    private int nextFrame = 0;
+    final int width = 480;
+    final int height = 800;
+
+    private long firstFrame = 0;
     private final IMediaWriter writer;
     public VideoMaker(String fileName)
     {
@@ -24,12 +24,12 @@ public class VideoMaker
         //add a video stream
         writer.addVideoStream(videoStreamIndex, videoStreamId, width, height);
     }
-    public void addFrame(BufferedImage frame)
+    public void addFrame(VideoFrame frame)
     {
+        if(firstFrame==0)
+            firstFrame = frame.getTimeStamp();
 
-        writer.encodeVideo(videoStreamIndex, frame, nextFrame, MILLISECONDS);
-        //increment the next frame
-        nextFrame += frameRate;
+        writer.encodeVideo(videoStreamIndex, frame.getFrame(), frame.getTimeStamp() - firstFrame, MILLISECONDS);
 
     }
 
