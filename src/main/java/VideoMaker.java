@@ -13,8 +13,8 @@ public class VideoMaker
 
     final int videoStreamIndex = 0;
     final int videoStreamId = 0;
-    final int width = 480;
-    final int height = 800;
+    final int width = 800;
+    final int height = 600;
 
     private long firstFrame = 0;
     private final IMediaWriter writer;

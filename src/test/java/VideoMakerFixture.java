@@ -13,7 +13,7 @@ public class VideoMakerFixture
     {
         VideoMaker maker = new VideoMaker("demo.mov");
         List<BufferedImage> frames = new ArrayList<BufferedImage>();
-        String path = "screencaps";
+        String path = "images";
         File folder = new File(path);
         File[] files = folder.listFiles();
 
