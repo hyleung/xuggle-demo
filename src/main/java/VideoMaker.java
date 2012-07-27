@@ -26,11 +26,12 @@ public class VideoMaker
     }
     public void addFrame(VideoFrame frame)
     {
+        
         if(firstFrame==0)
             firstFrame = frame.getTimeStamp();
-
-        writer.encodeVideo(videoStreamIndex, frame.getFrame(), frame.getTimeStamp() - firstFrame, MILLISECONDS);
-
+        long time =  frame.getTimeStamp() - firstFrame;
+        writer.encodeVideo(videoStreamIndex, frame.getFrame(),time, MILLISECONDS);
+        System.out.println(String.format("Frame added at: %d", time));
     }
 
     public void finish()

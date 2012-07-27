@@ -26,6 +26,7 @@ public class VideoMakerFixture
 
     private void addFrames(VideoMaker maker, File[] files) throws IOException
     {
+        int count = 0;
         for (File file: files)
         {
             String fileName = file.getName();
@@ -35,7 +36,10 @@ public class VideoMakerFixture
                 assert(image != null);
                 VideoFrame frame = new VideoFrame(image,Long.parseLong(fileName.substring(0,fileName.indexOf("."))));
                 maker.addFrame(frame);
+                count++;
             }
+            
         }
+        System.out.println(String.format("Frames added: %d", count));
     }
 }
